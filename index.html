@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satvik & Co - Premium Organic Fertilizers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1d6b3b;
+            --primary-light: #34925d;
+            --secondary: #f5a623;
+            --dark: #1a2e1a;
+            --light: #f5f9f5;
+        }
+        
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8f8f8;
+            color: var(--dark);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(29, 107, 59, 0.3);
+        }
+        
+        .search-input {
+            transition: all 0.3s;
+            border: 2px solid #ddd;
+        }
+        
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(29, 107, 59, 0.2);
+        }
+        
+        .footer-link {
+            transition: color 0.2s;
+        }
+        
+        .footer-link:hover {
+            color: var(--secondary);
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        .nav-mobile {
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-mobile {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: white;
+                z-index: 1000;
+                padding: 20px;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-mobile.active {
+                left: 0;
+            }
+            
+            .nav-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
+                display: none;
+            }
+            
+            .nav-overlay.active {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Navigation Overlay -->
+    <div class="nav-overlay"></div>
+    
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-xl font-bold text-gray-800">Satvik & Co</h2>
+            <button class="close-nav text-2xl"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="space-y-4">
+            <li><a href="#" class="block py-2 px-2 rounded hover:bg-gray-100">Home</a></li>
+            <li><a href="#products" class="block py-2 px-2 rounded hover:bg-gray-100">Products</a></li>
+            <li><a href="#about" class="block py-2 px-2 rounded hover:bg-gray-100">About</a></li>
+            <li><a href="#testimonials" class="block py-2 px-2 rounded hover:bg-gray-100">Testimonials</a></li>
+            <li><a href="#contact" class="block py-2 px-2 rounded hover:bg-gray-100">Contact</a></li>
+        </ul>
+        <div class="mt-8">
+            <button class="w-full py-2 px-4 bg-green-600 text-white rounded-md">Login</button>
+            <button class="w-full mt-2 py-2 px-4 border border-green-600 text-green-600 rounded-md">Register</button>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo and Mobile Menu Button -->
+                <div class="flex items-center space-x-4">
+                    <button class="md:hidden open-nav text-xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <a href="#" class="flex items-center">
+                        <img src="https://via.placeholder.com/40" alt="Satvik & Co Logo" class="h-10 w-10 rounded-full">
+                        <span class="ml-2 text-xl font-bold hidden sm:inline">Satvik & Co</span>
+                    </a>
+                </div>
+                
+                <!-- Search Bar - Hidden on mobile -->
+                <div class="hidden md:flex flex-1 max-w-md mx-4">
+                    <div class="relative w-full">
+                        <input type="text" placeholder="Search fertilizers, seeds, tools..." 
+                            class="search-input w-full py-2 px-4 rounded-l-md focus:outline-none">
+                        <button class="absolute right-0 top-0 h-full px-4 text-gray-500">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-r-md">
+                        Search
+                    </button>
+                </div>
+                
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="#products" class="nav-link">Products</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <div class="relative group">
+                        <a href="#" class="nav-link flex items-center">
+                            More <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white text-gray-800 rounded-md shadow-lg hidden group-hover:block">
+                            <a href="#testimonials" class="block px-4 py-2 hover:bg-gray-100">Testimonials</a>
+                            <a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact</a>
+                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Blog</a>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- User Actions -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="hidden md:block hover:text-yellow-300">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" class="hover:text-yellow-300 cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Mobile Search - Only visible on mobile -->
+            <div class="mt-3 md:hidden">
+                <div class="relative">
+                    <input type="text" placeholder="Search products..." 
+                        class="search-input w-full py-2 px-4 rounded-md focus:outline-none">
+                    <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Premium Organic Fertilizers for Thriving Harvests</h1>
+                    <p class="text-xl mb-6">Nourish your crops with nature's finest. 100% organic, scientifically formulated fertilizers for maximum yield and soil health.</p>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <button class="btn-primary py-3 px-6 rounded-md text-lg font-medium">Shop Now</button>
+                        <button class="bg-white text-green-700 py-3 px-6 rounded-md text-lg font-medium border border-green-700 hover:bg-gray-100">Learn More</button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" 
+                        alt="Organic Fertilizers" class="rounded-lg shadow-xl max-h-96 object-contain">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Categories -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Our Fertilizer Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Category 1 -->
+                <div class="bg-gray-50 rounded-lg p-6 text-center transition-all hover:shadow-lg cursor-pointer">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Organic Manures</h3>
+                    <p class="text-gray-600 text-sm">Natural, nutrient-rich composts for soil health</p>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="bg-gray-50 rounded-lg p-6 text-center transition-all hover:shadow-lg cursor-pointer">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-flask text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Biofertilizers</h3>
+                    <p class="text-gray-600 text-sm">Microbial formulations for nutrient absorption</p>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="bg-gray-50 rounded-lg p-6 text-center transition-all hover:shadow-lg cursor-pointer">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-seedling text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Growth Boosters</h3>
+                    <p class="text-gray-600 text-sm">Enhancers for plant growth and resilience</p>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="bg-gray-50 rounded-lg p-6 text-center transition-all hover:shadow-lg cursor-pointer">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bug text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Pest Controls</h3>
+                    <p class="text-gray-600 text-sm">Organic solutions for pest management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Products -->
+    <section id="products" class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold">Featured Fertilizers</h2>
+                <a href="#" class="text-green-600 hover:text-green-800 font-medium flex items-center">
+                    View All <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="product-card shadow-sm">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1599427303058-fa5e9c966727?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                            alt="Vermicompost Plus" class="w-full h-48 object-cover">
+                        <span class="badge bg-yellow-500 text-white">BESTSELLER</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Vermicompost Plus</h3>
+                        <p class="text-gray-600 text-sm mb-2">Organic manure with enhanced microbial activity</p>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-500 text-xs ml-2">(142)</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-green-700">₹599</span>
+                            <button class="btn-primary py-1 px-3 rounded-md text-sm font-medium">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card shadow-sm">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                            alt="Seaweed Extract" class="w-full h-48 object-cover">
+                        <span class="badge bg-green-500 text-white">NEW</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Seaweed Extract</h3>
+                        <p class="text-gray-600 text-sm mb-2">Natural growth booster with 60+ micronutrients</p>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                
